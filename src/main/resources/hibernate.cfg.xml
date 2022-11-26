@@ -13,5 +13,7 @@
         <!-- hibernate model to data definision model -->
         <!-- Czy chcesz aby klasa java sama wygenerowala tabele w bazie danych -->
          <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- definicja modeli -->
+        <mapping class = "hibernate.demo.Student"/>
     </session-factory>
 </hibernate-configuration>
