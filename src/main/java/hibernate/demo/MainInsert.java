@@ -30,9 +30,9 @@ public class MainInsert {
             //student.setKierunekNauczania("infromatyka");
             // student.setIndeks("124354");
             Student student = Student.builder()
-                    .dataUrodzenia(LocalDate.of(1990,1,3))
-                    .kierunekNauczania("infromatyka")
-                    .indeks("23546")
+                    .dataUrodzenia(LocalDate.of(1995,1,3))
+                    .kierunekNauczania("meth")
+                    .indeks("23556")
                     .imie("kekus")
                     .build();
 

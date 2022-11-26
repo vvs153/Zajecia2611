@@ -5,7 +5,7 @@ import org.hibernate.Transaction;
 
 import java.time.LocalDate;
 
-public class MainUpdate {
+public class MainDelete {
 // Update
 
     public static void main(String[] args) {
@@ -13,19 +13,14 @@ public class MainUpdate {
         try (Session session = HibernateUtil.INSTANCE.getSessionFactory().openSession()){
             Transaction transaction = session.beginTransaction();
 
-            Student student = Student.builder()
-                    .id(2L)
-                    .dataUrodzenia(LocalDate.of(1990,1,3))
-                    .kierunekNauczania("Math")
-                    .indeks("23546")
-                    .imie("kekkonen")
-                    .build();
-
-            //updateujemy studenta
-            //merge do updatowania, musi byc id
-            //persist do dodwaania, id samo sie dodaje
-            session.merge(student);
-            //potwierdzamy trasakcje
+        //najpierw select * from student where id =2L
+            Student student = session.get(Student.class, 2L);
+            //jesli udalo sie znalezc
+            if (student != null){
+                //Delete from student where id =2
+                session.remove(student);
+            }
+            //zatwierdzamy transakcje
             transaction.commit();
         } catch (Exception ioe) {
             // jeśli złapiemy błąd, to wywoła się catch
