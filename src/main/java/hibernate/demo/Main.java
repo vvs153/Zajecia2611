@@ -1,4 +1,10 @@
 package hibernate.demo;
 
-public class Main g{
+import org.hibernate.Session;
+
+public class Main {
+    public static void main(String[] args) {
+       Session session =  HibernateUtil.INSTANCE.getSessionFactory().openSession();
+       session.close();
+    }
 }
