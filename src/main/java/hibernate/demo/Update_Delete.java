@@ -20,8 +20,13 @@ public class Update_Delete {
                 input = scanner.nextLine();
                 if (input.toLowerCase().equals("update")) {
                     System.out.println("podaj id");
-                    Long id = scanner.nextLong();
-                    String temp = scanner.nextLine();
+                    String id = scanner.nextLine();
+                    Long studentId = Long.parseLong(id);
+                    Student studentCheck = session.get(Student.class, studentId);
+                    if (studentCheck == null){
+                    System.err.println("Nie ma takiego studenta");
+                    break;}
+                    else {
                     System.out.println("Podaj imie");
                     String name = scanner.nextLine();
                     System.out.println("Podaj kierunek");
@@ -39,15 +44,12 @@ public class Update_Delete {
                     int day = scanner.nextInt();
 
                     Student student = Student.builder()
-                            .id(id)
+                            .id(studentId)
                             .dataUrodzenia(LocalDate.of(year, month, day))
                             .kierunekNauczania(kierunek)
                             .indeks(indeks)
                             .imie(name)
                             .build();
-                    if (student.getId() == null){
-                        System.err.println("Nie znaleziono studenta");
-                    } else {
                         session.merge(student);  //potwierdzamy trasakcje
                         transaction.commit();
                     }
